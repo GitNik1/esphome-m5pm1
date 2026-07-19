@@ -1,3 +1,5 @@
+#ifdef USE_SWITCH
+
 #include "m5pm1_switch.h"
 #include "esphome/core/log.h"
 
@@ -87,3 +89,5 @@ void M5PM1Switch::dump_config() { LOG_SWITCH("", "M5PM1 Switch", this); }
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

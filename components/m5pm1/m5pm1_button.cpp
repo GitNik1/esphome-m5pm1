@@ -1,3 +1,5 @@
+#ifdef USE_BUTTON
+
 #include "m5pm1_button.h"
 #include "esphome/core/log.h"
 
@@ -33,3 +35,5 @@ void M5PM1Button::dump_config() { LOG_BUTTON("", "M5PM1 Button", this); }
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

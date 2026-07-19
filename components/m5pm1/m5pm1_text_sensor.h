@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_TEXT_SENSOR
+
 #include "esphome/core/component.h"
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "m5pm1.h"
@@ -28,3 +30,5 @@ class M5PM1TextSensor : public text_sensor::TextSensor, public PollingComponent 
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

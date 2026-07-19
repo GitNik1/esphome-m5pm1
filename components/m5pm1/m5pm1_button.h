@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_BUTTON
+
 #include "esphome/core/component.h"
 #include "esphome/components/button/button.h"
 #include "m5pm1.h"
@@ -31,3 +33,5 @@ class M5PM1Button : public button::Button, public Component {
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

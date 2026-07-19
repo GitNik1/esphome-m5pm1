@@ -1,3 +1,5 @@
+#ifdef USE_SELECT
+
 #include "m5pm1_select.h"
 #include "esphome/core/log.h"
 
@@ -18,3 +20,5 @@ void M5PM1I2CSpeedSelect::dump_config() { LOG_SELECT("", "M5PM1 I2C Speed", this
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

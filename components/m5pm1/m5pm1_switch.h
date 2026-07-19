@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_SWITCH
+
 #include "esphome/core/component.h"
 #include "esphome/components/switch/switch.h"
 #include "m5pm1.h"
@@ -37,3 +39,5 @@ class M5PM1Switch : public switch_::Switch, public Component {
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

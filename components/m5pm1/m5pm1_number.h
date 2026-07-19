@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_NUMBER
+
 #include "esphome/core/component.h"
 #include "esphome/components/number/number.h"
 #include "m5pm1.h"
@@ -28,3 +30,5 @@ class M5PM1Number : public number::Number, public Component {
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

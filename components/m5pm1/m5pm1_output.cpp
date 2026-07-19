@@ -1,3 +1,5 @@
+#ifdef USE_OUTPUT
+
 #include "m5pm1_output.h"
 #include "esphome/core/log.h"
 
@@ -29,3 +31,5 @@ void M5PM1PWMOutput::dump_config() {
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

@@ -1,3 +1,5 @@
+#ifdef USE_BINARY_SENSOR
+
 #include "m5pm1_binary_sensor.h"
 #include "esphome/core/log.h"
 
@@ -22,3 +24,5 @@ void M5PM1BinarySensor::dump_config() { LOG_BINARY_SENSOR("", "M5PM1 Binary Sens
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

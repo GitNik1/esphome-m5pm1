@@ -1,3 +1,5 @@
+#ifdef USE_LIGHT
+
 #include "m5pm1_light.h"
 #include "esphome/core/log.h"
 
@@ -30,3 +32,5 @@ void M5PM1Light::dump_config() { ESP_LOGCONFIG(TAG, "M5PM1 NeoPixel light: %u LE
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

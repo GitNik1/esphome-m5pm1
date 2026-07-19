@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_OUTPUT
+
 #include "esphome/core/component.h"
 #include "esphome/components/output/float_output.h"
 #include "m5pm1.h"
@@ -27,3 +29,5 @@ class M5PM1PWMOutput : public output::FloatOutput, public Component {
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

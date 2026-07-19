@@ -1,3 +1,5 @@
+#ifdef USE_TEXT_SENSOR
+
 #include "m5pm1_text_sensor.h"
 #include "esphome/core/log.h"
 
@@ -48,3 +50,5 @@ void M5PM1TextSensor::dump_config() { LOG_TEXT_SENSOR("", "M5PM1 Text Sensor", t
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

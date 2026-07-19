@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_SENSOR
+
 #include "esphome/core/component.h"
 #include "esphome/components/sensor/sensor.h"
 #include "m5pm1.h"
@@ -36,3 +38,5 @@ class M5PM1Sensor : public sensor::Sensor, public PollingComponent {
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

@@ -1,3 +1,5 @@
+#ifdef USE_NUMBER
+
 #include "m5pm1_number.h"
 #include "esphome/core/log.h"
 
@@ -29,3 +31,5 @@ void M5PM1Number::dump_config() { LOG_NUMBER("", "M5PM1 Number", this); }
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

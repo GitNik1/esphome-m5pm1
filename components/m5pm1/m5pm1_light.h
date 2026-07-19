@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_LIGHT
+
 #include "esphome/core/component.h"
 #include "esphome/components/light/addressable_light.h"
 #include "esphome/components/light/light_output.h"
@@ -42,3 +44,5 @@ class M5PM1Light : public light::AddressableLight {
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif

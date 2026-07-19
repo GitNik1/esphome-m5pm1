@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef USE_BINARY_SENSOR
+
 #include "esphome/core/component.h"
 #include "esphome/components/binary_sensor/binary_sensor.h"
 #include "m5pm1.h"
@@ -28,3 +30,5 @@ class M5PM1BinarySensor : public binary_sensor::BinarySensor, public PollingComp
 
 }  // namespace m5pm1
 }  // namespace esphome
+
+#endif
