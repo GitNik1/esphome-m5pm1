@@ -12,7 +12,7 @@ class M5PM1GPIOPin : public GPIOPin {
   void pin_mode(gpio::Flags flags) override;
   bool digital_read() override;
   void digital_write(bool value) override;
-  std::string dump_summary() const override;
+  size_t dump_summary(char *buffer, size_t len) const override;
   gpio::Flags get_flags() const override { return this->flags_; }
 
   void set_parent(M5PM1Component *parent) { this->parent_ = parent; }

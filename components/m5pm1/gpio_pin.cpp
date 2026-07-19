@@ -39,10 +39,8 @@ void M5PM1GPIOPin::digital_write(bool value) {
   this->parent_->gpio_set_output(this->pin_, value != this->inverted_);
 }
 
-std::string M5PM1GPIOPin::dump_summary() const {
-  char buffer[32];
-  snprintf(buffer, sizeof(buffer), "%u via M5PM1", this->pin_);
-  return buffer;
+size_t M5PM1GPIOPin::dump_summary(char *buffer, size_t len) const {
+  return snprintf(buffer, len, "%u via M5PM1", this->pin_);
 }
 
 }  // namespace m5pm1
