@@ -1,0 +1,191 @@
+esphome:
+  name: m5pm1-test-ard
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+logger:
+
+external_components:
+  - source:
+      type: local
+      path: ../components
+    components: [m5pm1]
+
+i2c:
+  sda: 21
+  scl: 22
+
+m5pm1:
+  id: pmic
+  address: 0x6E
+  charge: true
+  dcdc: true
+  ldo: true
+  boost: false
+  battery_low_voltage_protection: 3.0V
+  i2c_sleep_timeout: 0
+
+# --- GPIO expander pin used through the standard gpio platforms ---
+switch:
+  - platform: gpio
+    name: "PM1 GPIO0"
+    pin:
+      m5pm1: pmic
+      number: 0
+      mode:
+        output: true
+  - platform: m5pm1
+    name: "Charge"
+    type: charge
+  - platform: m5pm1
+    name: "DCDC 5V"
+    type: dcdc
+  - platform: m5pm1
+    name: "LDO 3.3V"
+    type: ldo
+  - platform: m5pm1
+    name: "Boost 5V"
+    type: boost
+  - platform: m5pm1
+    name: "LED_EN Level"
+    type: led_en_level
+  - platform: m5pm1
+    name: "LDO Hold"
+    type: ldo_hold
+  - platform: m5pm1
+    name: "Boost Hold"
+    type: boost_hold
+  - platform: m5pm1
+    name: "GPIO2 Hold"
+    type: gpio_hold
+    pin: 2
+
+binary_sensor:
+  - platform: gpio
+    name: "PM1 GPIO1 Input"
+    pin:
+      m5pm1: pmic
+      number: 1
+      mode:
+        input: true
+      inverted: true
+  - platform: m5pm1
+    name: "Power Button"
+    type: button
+  - platform: m5pm1
+    name: "External Power"
+    type: external_power
+
+sensor:
+  - platform: m5pm1
+    type: battery_voltage
+    name: "Battery Voltage"
+  - platform: m5pm1
+    type: vin_voltage
+    name: "VIN Voltage"
+  - platform: m5pm1
+    type: vinout_voltage
+    name: "5VINOUT Voltage"
+  - platform: m5pm1
+    type: reference_voltage
+    name: "Reference Voltage"
+  - platform: m5pm1
+    type: temperature
+    name: "PMIC Temperature"
+  - platform: m5pm1
+    type: adc1
+    name: "ADC1"
+  - platform: m5pm1
+    type: adc2
+    name: "ADC2"
+  - platform: m5pm1
+    type: watchdog_count
+    name: "Watchdog Count"
+  - platform: m5pm1
+    type: pwm_frequency
+    name: "PWM Frequency"
+
+text_sensor:
+  - platform: m5pm1
+    type: power_source
+    name: "Power Source"
+  - platform: m5pm1
+    type: wake_source
+    name: "Wake Source"
+
+output:
+  - platform: m5pm1
+    id: pwm0
+    channel: 0
+    frequency: 2000Hz
+  - platform: m5pm1
+    id: pwm1
+    channel: 1
+    frequency: 1000Hz
+
+number:
+  - platform: m5pm1
+    name: "Battery LVP"
+    type: battery_lvp
+  - platform: m5pm1
+    name: "Watchdog Timeout"
+    type: watchdog_timeout
+  - platform: m5pm1
+    name: "PWM Frequency Setpoint"
+    type: pwm_frequency
+
+button:
+  - platform: m5pm1
+    name: "Shutdown"
+    type: shutdown
+  - platform: m5pm1
+    name: "Reboot"
+    type: reboot
+  - platform: m5pm1
+    name: "Feed Watchdog"
+    type: feed_watchdog
+  - platform: m5pm1
+    name: "Refresh LEDs"
+    type: refresh_leds
+  - platform: m5pm1
+    name: "Download Mode"
+    type: enter_download_mode
+  - platform: m5pm1
+    name: "Timer Clear"
+    type: timer_clear
+
+select:
+  - platform: m5pm1
+    name: "I2C Speed"
+
+light:
+  - platform: m5pm1
+    name: "PM1 NeoPixel"
+    m5pm1_id: pmic
+    num_leds: 8
+
+# --- exercise every action so their templates are code-generated ---
+interval:
+  - interval: 3600s
+    then:
+      - m5pm1.shutdown: pmic
+      - m5pm1.reboot: pmic
+      - m5pm1.feed_watchdog: pmic
+      - m5pm1.enter_download_mode: pmic
+      - m5pm1.set_timer:
+          id: pmic
+          seconds: 60
+          action: power_on
+      - m5pm1.set_battery_lvp:
+          id: pmic
+          millivolts: 3200
+      - m5pm1.aw8737a_pulse:
+          id: pmic
+          pin: 0
+          pulses: 2
+      - output.set_level:
+          id: pwm0
+          level: 50%
