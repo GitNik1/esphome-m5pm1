@@ -38,8 +38,8 @@ void M5PM1Sensor::update() {
       value = raw / 1000.0f;
       break;
     case SENSOR_TEMPERATURE:
-      ok = this->parent_->read_temperature_deci(&raw);
-      value = raw / 10.0f;
+      ok = this->parent_->read_temperature_c(&raw);
+      value = raw;
       break;
     case SENSOR_ADC1:
       ok = this->parent_->read_adc(ADC_CH_1, &raw);

@@ -122,7 +122,10 @@ enum PowerSource : uint8_t {
 enum AdcChannel : uint8_t {
   ADC_CH_1 = 1,     // GPIO1
   ADC_CH_2 = 2,     // GPIO2
-  ADC_CH_TEMP = 6,  // internal temperature (0.1 °C)
+  // Internal temperature sensor. NOTE: the vendor header documents this as
+  // 0.1 °C units ("250 means 25.0°C"), but real PM1 hardware returns whole
+  // degrees Celsius (verified against a reference sensor: raw 31 at ~30.7 °C).
+  ADC_CH_TEMP = 6,
 };
 
 enum GpioFunc : uint8_t {
@@ -200,7 +203,8 @@ class M5PM1Component : public Component, public i2c::I2CDevice {
   bool read_vin(uint16_t *mv) { return this->read_reg16(REG_VIN_L, mv); }
   bool read_5vinout(uint16_t *mv) { return this->read_reg16(REG_5VINOUT_L, mv); }
   bool read_adc(AdcChannel channel, uint16_t *value);
-  bool read_temperature_deci(uint16_t *deci_c) { return this->read_adc(ADC_CH_TEMP, deci_c); }
+  /// Read the internal chip temperature in whole degrees Celsius.
+  bool read_temperature_c(uint16_t *celsius) { return this->read_adc(ADC_CH_TEMP, celsius); }
 
   // ---- power source / wake source ----
   bool get_power_source(PowerSource *src);

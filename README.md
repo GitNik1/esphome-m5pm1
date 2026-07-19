@@ -64,7 +64,7 @@ m5pm1:
 | `vin_voltage`        | V    | VIN (USB/DC) voltage                    |
 | `vinout_voltage`     | V    | 5VINOUT bidirectional port voltage      |
 | `reference_voltage`  | V    | internal reference                      |
-| `temperature`        | °C   | internal chip temperature               |
+| `temperature`        | °C   | internal chip temperature (1 °C resolution) |
 | `adc1`               | —    | ADC on GPIO1 (12-bit raw, routes GPIO1) |
 | `adc2`               | —    | ADC on GPIO2 (12-bit raw, routes GPIO2) |
 | `watchdog_count`     | s    | current watchdog countdown              |
@@ -181,8 +181,12 @@ on_...:
   (ADC/PWM/NeoPixel) is done automatically by the relevant platform.
 - Switching the PMIC I²C speed to 400 kHz only sets the chip-side bit; set the
   actual bus speed in the `i2c:` block (`frequency: 400kHz`).
-- Hardware-tested: **pending** — validated so far via CI compile only. Feedback
-  from real M5Stack PM1 hardware is welcome.
+- The internal temperature sensor reports **whole degrees Celsius**, despite the
+  vendor header documenting 0.1 °C units. Confirmed on hardware against a
+  reference sensor (PM1 reported 31 °C at 30.7 °C ambient).
+- Hardware validation is **in progress**: battery voltage and chip temperature
+  are verified on a real PM1; the remaining functions are CI-compile-tested only.
+  Feedback from hardware is welcome.
 
 ## License
 
