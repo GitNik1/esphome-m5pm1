@@ -2,7 +2,7 @@
 
 #include "esphome/core/component.h"
 #include "esphome/components/switch/switch.h"
-#include "m5pm1.h"
+#include "esphome/components/m5pm1/m5pm1.h"
 
 namespace esphome {
 namespace m5pm1 {

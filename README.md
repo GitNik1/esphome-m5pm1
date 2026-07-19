@@ -22,6 +22,19 @@ external_components:
     components: [m5pm1]
 ```
 
+**All platforms are optional.** Each one lives in its own sub-package
+(`components/m5pm1/<platform>/`), so ESPHome only copies and compiles the C++ for
+the platforms you actually use — a config with just the `m5pm1:` hub does not pull
+in `light`, `select`, `number`, … . This is verified in CI by
+`test/test-esp32-minimal.yaml`.
+
+```
+components/m5pm1/
+├── __init__.py, m5pm1.{h,cpp}   # hub (needs only i2c) + GPIO expander pin + actions
+├── sensor/  binary_sensor/  text_sensor/
+├── switch/  output/  number/  button/  select/  light/
+```
+
 ## Hub
 
 ```yaml

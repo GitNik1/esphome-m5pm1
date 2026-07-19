@@ -13,6 +13,7 @@ jobs:
         config:
           - test/test-esp32.yaml
           - test/test-esp32-arduino.yaml
+          - test/test-esp32-minimal.yaml
     steps:
       - uses: actions/checkout@v4
 

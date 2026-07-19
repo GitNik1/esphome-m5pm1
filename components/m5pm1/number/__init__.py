@@ -8,7 +8,7 @@ from esphome.const import (
     UNIT_SECOND,
 )
 
-from . import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
+from .. import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
 
 DEPENDENCIES = ["m5pm1"]
 

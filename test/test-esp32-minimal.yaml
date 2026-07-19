@@ -1,0 +1,25 @@
+# Regression test: the hub alone must compile without pulling in ANY of the
+# optional platforms (light, select, number, ...). If a platform's C++ ever
+# leaks into the always-compiled root of the component, this build breaks.
+esphome:
+  name: m5pm1-minimal
+
+esp32:
+  board: esp32dev
+  framework:
+    type: esp-idf
+
+logger:
+
+external_components:
+  - source:
+      type: local
+      path: ../components
+    components: [m5pm1]
+
+i2c:
+  sda: 21
+  scl: 22
+
+m5pm1:
+  id: pmic

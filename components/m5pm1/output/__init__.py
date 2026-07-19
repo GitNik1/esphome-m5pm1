@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import output
 from esphome.const import CONF_CHANNEL, CONF_FREQUENCY, CONF_ID
 
-from . import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
+from .. import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
 
 DEPENDENCIES = ["m5pm1"]
 

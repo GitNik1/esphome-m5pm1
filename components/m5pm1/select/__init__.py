@@ -2,7 +2,7 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import select
 
-from . import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
+from .. import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
 
 DEPENDENCIES = ["m5pm1"]
 

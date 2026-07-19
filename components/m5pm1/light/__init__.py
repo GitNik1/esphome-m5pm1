@@ -3,7 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import light
 from esphome.const import CONF_NUM_LEDS, CONF_OUTPUT_ID
 
-from . import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
+from .. import CONF_M5PM1_ID, M5PM1Component, m5pm1_ns
 
 DEPENDENCIES = ["m5pm1"]
 
