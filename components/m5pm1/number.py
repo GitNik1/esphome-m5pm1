@@ -3,6 +3,7 @@ import esphome.config_validation as cv
 from esphome.components import number
 from esphome.const import (
     CONF_TYPE,
+    CONF_UNIT_OF_MEASUREMENT,
     UNIT_HERTZ,
     UNIT_SECOND,
 )
@@ -35,11 +36,11 @@ CONFIG_SCHEMA = (
 
 async def to_code(config):
     enum_val, mn, mx, step, unit = NUMBER_TYPES[config[CONF_TYPE]]
+    config.setdefault(CONF_UNIT_OF_MEASUREMENT, unit)
     var = await number.new_number(
         config, min_value=mn, max_value=mx, step=step
     )
     await cg.register_component(var, config)
-    cg.add(var.traits.set_unit_of_measurement(unit))
     parent = await cg.get_variable(config[CONF_M5PM1_ID])
     cg.add(var.set_parent(parent))
     cg.add(var.set_type(enum_val))
