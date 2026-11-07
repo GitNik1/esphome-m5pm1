@@ -14,6 +14,17 @@ from esphome.const import (
 
 CODEOWNERS = ["@GitNik1"]
 DEPENDENCIES = ["i2c"]
+AUTO_LOAD = [
+    "binary_sensor",
+    "button",
+    "light",
+    "number",
+    "output",
+    "select",
+    "sensor",
+    "switch",
+    "text_sensor",
+]
 MULTI_CONF = True
 
 m5pm1_ns = cg.esphome_ns.namespace("m5pm1")
